@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>秋怡好美</title>
+</head>
+<body>
+  <form action="/add" method="post">
+      <table border="1">
+        <tr>
+          <td>Title :</td>
+          <td>
+            <input type="text" name="title">
+          </td>
+        </tr>
+        <tr>
+          <td>Content :</td>
+          <td>
+            <input type="text" name="content">
+          </td>
+          <!--
+        文本输入框：允许用户输入单行文本的表单控件
+        type="text"：指定输入类型为普通文本
+        name="content"：表单提交时的参数名称（key），
+                       后端可通过该名称获取用户输入的值
+    -->
+        </tr>
+        <tr>
+          <td>OpenerName :</td>
+          <td>
+            <input type="text" name = "openerName">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="submit" value="提交">
+          </td>
+          <td>
+            <input type="reset" value="重置">
+          </td>
+        </tr>
+      </table>
+  </form>
+</body>
+</html>

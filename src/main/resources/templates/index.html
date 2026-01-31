@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Love秋怡</title>
+</head>
+<body>
+<!--
+    超链接标签：用于跳转到 "添加" 页面
+    href="/add"：点击后浏览器会向当前域名下的 /add 路径发送 GET 请求-->
+    <a href="/add">添加</a>
+    <table border="1">
+        <tr>
+            <td>ID</td>
+            <td>标题</td>
+            <td>内容</td>
+            <td>创建时间</td>
+            <td>操作员</td>
+            <td>操作</td>
+        </tr>
+        <tr th:each="news:${list}">
+            <td th:text="${news.id}"></td>
+            <td th:text="${news.title}"></td>
+            <td th:text="${news.content}"></td>
+            <td th:text="${news.createTime}"></td>
+            <td th:text="${news.openerName}"></td>
+            <td>
+                <!--
+                    超链接：点击后跳转到编辑/删除页面
+                    th:href 是 Thymeleaf 语法，用于动态生成 href 属性值
+                -->
+            <td>
+                <!--
+                    编辑链接：
+                    th:href="'/get?id='+${news.id}"
+
+                    语法解析：
+                    - ' 单引号内是字符串字面量（固定部分）
+                    - + 是字符串连接符
+                    - ${news.id} 是 Thymeleaf 表达式，获取 news 对象的 id 属性值
+
+                    最终渲染结果示例（假设 news.id=1）：
+                    <a href="/get?id=1">编辑</a>
+
+                    注意：这是一个 GET 请求，参数通过 URL 的 QueryString 传递
+                -->
+                <a th:href="'/get?id='+${news.id}">编辑</a>
+
+                <!--
+                    删除链接：
+                    th:href="'/delete?id='+${news.id}"
+
+                    语法同上，最终渲染为类似：
+                    <a href="/delete?id=1">删除</a>
+
+                    ⚠️ 重要安全提醒：
+                    - 删除操作使用 GET 请求有严重风险！
+                    - 搜索引擎爬虫可能意外触发删除
+                    - 浏览器预加载或缓存可能导致误删
+                    - 用户误点直接执行删除，无二次确认
+
+                    改进建议：
+                    应将删除改为 POST/DELETE 请求，并通过表单提交：
+
+                    <form th:action="@{/delete}" method="post"
+                          onsubmit="return confirm('确定删除吗？')">
+                        <input type="hidden" name="id" th:value="${news.id}"/>
+                        <button type="submit">删除</button>
+                    </form>
+
+                    或使用 RESTful 风格的 DELETE 请求（需配置）：
+                    <form th:action="@{/news/{id}(id=${news.id})}" method="post">
+                        <input type="hidden" name="_method" value="DELETE"/>
+                        <button type="submit">删除</button>
+                    </form>
+                -->
+                <a th:href="'/delete?id='+${news.id}">删除</a>
+            </td>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

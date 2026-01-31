@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>秋怡好美</title>
+</head>
+<body>
+<form action="update" method="post">
+  <table>
+    <tr>
+      <td>ID：</td>
+      <td>
+        <!--
+    标准HTML输入框，type="text"表示文本输入
+    name="id"是表单提交时的参数名
+    readonly属性使输入框只读，用户无法修改
+-->
+      <td>
+        <input type="text" name="id"
+        th:value="${news.id}"
+        readonly/>
+      <!--
+       th:value 是 Thymeleaf 模板引擎的语法
+       th: 前缀表示这是 Thymeleaf 指令，服务器端处理
+       ${news.id} 是OGNL表达式，从news对象中获取id属性值
+       渲染后变成普通的value属性，如：value="123"
+       浏览器最终看不到th:value，只能看到value
+   -->
+      </td>
+      </td>
+    </tr>
+    <tr>
+      <td>Title：</td>
+      <td>
+        <input type="text" name="title" th:value="${news.title}"/>
+      </td>
+    </tr>
+    <tr>
+      <td>Content：</td>
+      <td>
+        <input type="text" name="content" th:value="${news.content}"/>
+      </td>
+    </tr>
+    <tr>
+      <td>CreateTime：</td>
+      <td>
+        <input type="text" name="createTime" th:value="${news.createTime}" readonly/>
+      </td>
+    </tr>
+    <tr>
+      <td>OpenerName：</td>
+      <td>
+        <input type="text" name="openerName" th:value="${news.openerName}"/>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="submit" value="提交"/>
+      </td>
+      <td>
+        <input type="reset" value="重置"/>
+      </td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

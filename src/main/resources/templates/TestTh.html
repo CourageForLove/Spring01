@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>秋怡好美</title>
+</head>
+<body>
+    <h1 th:text="${Love}"></h1>
+<!-- text标签用于显示文本信息   -->
+----------------------------------
+    <h1 th:if="${score >= 90}">优秀</h1>
+    <h1 th:if="${score < 90 && score >=80}">良好</h1>
+    <h1 th:if="${score<80 && score >= 60}">及格</h1>
+<!--if 用来判断内容是否显示-->
+    ------------------------------------
+<table>
+    <tr th:each="Love:${MyLove}">
+        <td th:text="${Love}"></td>
+    </tr>
+</table>
+<!--each用法用于遍历-->
+----------------------------
+
+</body>
+</html>
